@@ -28,7 +28,6 @@ class TelegramSpider(object):
         self.cols = []
         self.start_time = time.time()
 
-
     async def handler(self, event):
         try:
             content = remove_emoji(event.message.message)
@@ -61,7 +60,6 @@ class TelegramSpider(object):
             traceback.print_exc()
             logger.info(e)
 
-
     @staticmethod
     def post_request(data):
         base_dir = os.path.dirname(os.path.abspath(__file__))
@@ -87,7 +85,6 @@ class TelegramSpider(object):
         else:
             logger.error("Failed to Insert %d Telegram messages"  % len(data))
         os.remove(post_file_name)
-
 
     def run(self):
         self.handler = self.client.on(events.NewMessage)(self.handler)
